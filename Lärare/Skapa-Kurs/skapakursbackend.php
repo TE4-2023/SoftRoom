@@ -1,5 +1,5 @@
 <?php
-require 'connect.php'; // Include your database connection file
+require "../Includes/connect.php"; // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Assuming form fields are submitted via POST method
