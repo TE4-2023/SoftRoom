@@ -1,5 +1,5 @@
 <?php 
-require "../Includes/connect.php";
+require "../../Includes/connect.php";
 ?>
 
 <!DOCTYPE html>

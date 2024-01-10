@@ -1,5 +1,5 @@
 <?php
-require "../Includes/connect.php";
+require "../../Includes/connect.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
