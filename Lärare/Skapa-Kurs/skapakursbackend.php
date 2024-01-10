@@ -1,6 +1,8 @@
 <?php
 require "../../Includes/connect.php"; // Include your database connection file
 
+
+// Reading this makes my brain spasm
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Assuming form fields are submitted via POST method
     $email = $_POST['Email'];
