@@ -1,5 +1,5 @@
 <?php
-require "../../Includes/connect.php"; // Include your database connection file
+require "../../_includes/connect.php"; // Include your database connection file
 
 
 // Reading this makes my brain spasm

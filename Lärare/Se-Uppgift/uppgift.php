@@ -1,7 +1,7 @@
 <!-- Ihopsnickrat av Emil Gothilander -->
 <?php
 session_start();
-require "../Includes/connect.php";
+require "../_includes/connect.php";
 
 // Hämta uppgiften från databasen
 $sql = "SELECT * FROM uppgifter WHERE uppgiftID = :AssignmentID";
