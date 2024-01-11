@@ -1,5 +1,5 @@
 <?php
-require "connect.php";
+require "../../Includes/connect.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             ?>
             <?php foreach ($uppgifter as $uppgift): ?>
                 <div class="assignment-container">
-                <a href="http://localhost:8081/Softroom1/Lärare/Se-uppgift/uppgift.php?uppgiftID=<?php echo $uppgift['uppgiftID']; ?>">
+                <a href="../Se-uppgift/uppgift.php?uppgiftID=<?php echo $uppgift['uppgiftID']; ?>">
                         <button class="assignment-button">
                             📝
                             <?php echo $uppgift['titel']; ?>
