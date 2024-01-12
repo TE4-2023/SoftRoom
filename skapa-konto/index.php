@@ -13,7 +13,7 @@
     <form action="../_includes/account/register-account.php" method="post" style="padding:35%;padding-top:10%;">
         <div class="mb-3">
             <label for="email" class="form-label">E-post</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="mail">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
             <div id="emailHelp" class="form-text">Vi delar aldrig din e-post address med någon annan.</div>
         </div>
         <div class="mb-3">

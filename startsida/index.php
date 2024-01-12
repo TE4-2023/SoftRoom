@@ -4,9 +4,9 @@
 <!-- Includes -->
 <?php
 include_once "../_includes/connect.php"; // Connect to Database
-include_once "../_includes/allowaccess.php";
+//include_once "../_includes/allowaccess.php";
 
-include_once "../_includes/userutil.php"; // Utilities included such as isUserLoggedIn
+//include_once "../_includes/userutil.php"; // Utilities included such as isUserLoggedIn
 ?>
 
 <!-- Webpage -->

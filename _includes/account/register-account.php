@@ -17,13 +17,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $userSQL = "INSERT INTO användare (email, personNummer, lösenord) VALUES (:email, :ssn, SHA(:pwd))";
 
-    $stmt = $pdo->prepare($userSQL);
-    $stmt->bindParam(':email',$email);
-    $stmt->bindParam(':email',$ssn);
-    $stmt->bindParam(':pwd',$password);
+    $query = $pdo->prepare($userSQL);
+    $data = array(
+        ':email' => $email,
+        ':ssn' => $ssn,
+        ':pwd' => $password
+    );
 
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $query->execute($data);
 
-    header("Location: ../logga-in");
+    header("Location: ../../logga-in");
 }
