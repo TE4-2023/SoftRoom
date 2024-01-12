@@ -1,7 +1,7 @@
 <!-- Ihopsnickrat av Emil Gothilander -->
 <?php
 session_start();
-require "../Includes/connect.php";
+require "../_includes/connect.php";
 
 // Hämta uppgiften från databasen
 $sql = "SELECT * FROM uppgifter WHERE uppgiftID = :AssignmentID";
@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["regret-assignment"])) 
 
 }
 ?>
+
+<!-- Update -->
 
 <!DOCTYPE html>
 <html lang="sv">
