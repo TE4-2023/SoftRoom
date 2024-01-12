@@ -13,22 +13,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $userSQL = "SELECT * FROM användare WHERE email = :email AND lösenord = SHA(:pwd)";
 
-    $stmt = $pdo->prepare($userSQL);
-    $stmt->bindParam(':email',$email);
-    $stmt->bindParam(':pwd',$password);
+    $query = $pdo->prepare($userSQL);
+    $data = array(
+        ':email' => $email,
+        ':pwd' => $password
+    );
 
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $query->execute($data);
     
-    if ($result->rowCount() == 0) {
-        $stmt = null;
-        header("Location: ../logga-in?error=notfound"); //test
+    if ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $_SESSION["uid"] = $query->fetch()['personNummer'];
+        $query = null;
+        header("Location: ../../startsida");
     }
     else {
-        $_SESSION["uid"] = $result->fetch()['personNummer'];
-        header("Location: ../startsida");
+        $query = null;
+        header("Location: ../../logga-in?error=notfound"); //test
     }
 }
 else {
-    header("Location: ../logga-in");
+    header("Location: ../../logga-in");
 }
