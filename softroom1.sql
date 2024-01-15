@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 15 jan 2024 kl 09:48
+-- Tid vid skapande: 15 jan 2024 kl 13:58
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -33,17 +33,16 @@ CREATE TABLE `användare` (
   `email` varchar(255) DEFAULT NULL,
   `rollID` tinyint(4) DEFAULT NULL,
   `efternamnID` int(11) DEFAULT NULL,
-  `personNummer` varchar(16) DEFAULT NULL
+  `personNummer` varchar(16) DEFAULT NULL,
+  `lösenord` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `användare`
 --
 
-INSERT INTO `användare` (`användarID`, `namnID`, `email`, `rollID`, `efternamnID`, `personNummer`) VALUES
-(4, 2, 'test@mail.com', 1, 3, '1234567890'),
-(5, 1, 'mail@mail.com', 1, 2, '1234567890'),
-(6, 4, 'mail@mail.mail', 2, 5, '1234567890');
+INSERT INTO `användare` (`användarID`, `namnID`, `email`, `rollID`, `efternamnID`, `personNummer`, `lösenord`) VALUES
+(14, 14, 'Big@Big.Big', 1, 19, '00000000-1111', '$2y$10$roMFgUv2W5uI0N5/ImWxYOUNVIkXP7K.H3h31eQR8QTvkDoCDhqW6');
 
 -- --------------------------------------------------------
 
@@ -57,42 +56,6 @@ CREATE TABLE `inlämningar` (
   `uppgiftID` int(11) DEFAULT NULL,
   `datum` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tabellstruktur `inskriving_kurs`
---
-
-CREATE TABLE `inskriving_kurs` (
-  `kursInskrivningID` int(11) NOT NULL,
-  `elevID` int(11) DEFAULT NULL,
-  `kursID` int(11) DEFAULT NULL,
-  `betyg` char(1) DEFAULT NULL,
-  `matrisVärden` varchar(50) DEFAULT NULL,
-  `matris` varchar(255) DEFAULT NULL,
-  `martistext1` varchar(2000) DEFAULT NULL,
-  `martistext2` varchar(2000) DEFAULT NULL,
-  `martistext3` varchar(2000) DEFAULT NULL,
-  `selectedSubject` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumpning av Data i tabell `inskriving_kurs`
---
-
-INSERT INTO `inskriving_kurs` (`kursInskrivningID`, `elevID`, `kursID`, `betyg`, `matrisVärden`, `matris`, `martistext1`, `martistext2`, `martistext3`, `selectedSubject`) VALUES
-(44, NULL, NULL, 'C', NULL, NULL, 'Svenska - Nivå E:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå C:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå A:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska'),
-(45, NULL, NULL, 'B', NULL, NULL, 'Engelska - Nivå E:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå C:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå A:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska'),
-(46, NULL, NULL, 'D', NULL, NULL, '<h2>Matematik - Nivå E:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå C:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå A:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', 'Matte'),
-(47, NULL, NULL, 'F', NULL, NULL, '<h2>Fysik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', '<h2>Fysik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', '<h2>Fysik - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', 'Fysik'),
-(48, NULL, NULL, 'A', NULL, NULL, '<h2> Samhällskunskap - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', '<h2> Samhällskunskap - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', '<h2> Samhällskunskap - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', 'Samhällskunskap'),
-(49, NULL, NULL, 'E', NULL, NULL, '<h2> Biologi - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Biologi - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Biologi - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Biologi'),
-(50, NULL, NULL, 'D', NULL, NULL, '<h2> Kemi - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Kemi - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Kemi - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Kemi'),
-(51, NULL, NULL, 'A', NULL, NULL, '<h2>Idrott - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2>Idrott - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2>Idrott - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Idrott'),
-(52, NULL, NULL, 'B', NULL, NULL, '<h2>Musik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', '<h2>Musik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', '<h2>Musik - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', 'Musik'),
-(53, NULL, NULL, 'A', NULL, NULL, '<h2> Programmering - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Programmering - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Programmering - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Programmering'),
-(54, NULL, NULL, 'B', NULL, NULL, '<h2> Teknik - Nivå E :</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', '<h2> Teknik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', '<h2> Teknik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', 'Teknik');
 
 -- --------------------------------------------------------
 
@@ -111,6 +74,42 @@ CREATE TABLE `inskrivningklass` (
 
 INSERT INTO `inskrivningklass` (`klassID`, `användarID`) VALUES
 (1, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `inskrivningkurs`
+--
+
+CREATE TABLE `inskrivningkurs` (
+  `kursInskrivningID` int(11) NOT NULL,
+  `elevID` int(11) DEFAULT NULL,
+  `kursID` int(11) DEFAULT NULL,
+  `betyg` char(1) DEFAULT NULL,
+  `matrisVärden` varchar(50) DEFAULT NULL,
+  `matris` varchar(255) DEFAULT NULL,
+  `martistext1` varchar(2000) DEFAULT NULL,
+  `martistext2` varchar(2000) DEFAULT NULL,
+  `martistext3` varchar(2000) DEFAULT NULL,
+  `selectedSubject` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `inskrivningkurs`
+--
+
+INSERT INTO `inskrivningkurs` (`kursInskrivningID`, `elevID`, `kursID`, `betyg`, `matrisVärden`, `matris`, `martistext1`, `martistext2`, `martistext3`, `selectedSubject`) VALUES
+(44, NULL, NULL, 'C', NULL, NULL, 'Svenska - Nivå E:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå C:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå A:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska'),
+(45, NULL, NULL, 'B', NULL, NULL, 'Engelska - Nivå E:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå C:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå A:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska'),
+(46, NULL, NULL, 'D', NULL, NULL, '<h2>Matematik - Nivå E:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå C:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå A:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', 'Matte'),
+(47, NULL, NULL, 'F', NULL, NULL, '<h2>Fysik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', '<h2>Fysik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', '<h2>Fysik - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter inom fysik.\n<br>\nIdentifiera huvudidéer och viktig information i fysikaliska texter.\n\n<br>Använda grundläggande facktermer för att förstå och uttrycka sig inom fysik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla satser och korta texter inom fysik.\n<br>\nAnvända grundläggande facktermer och grammatik inom fysik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom fysik med grundläggande facktermer och uttal.\n\n<br>\n<br>', 'Fysik'),
+(48, NULL, NULL, 'A', NULL, NULL, '<h2> Samhällskunskap - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', '<h2> Samhällskunskap - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', '<h2> Samhällskunskap - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3><br>\nKunna förstå och tolka enklare texter inom samhällskunskap.\n<br>\nIdentifiera huvudidéer och viktig information i samhällskunskapliga texter.\n<br>\nAnvända grundläggande begrepp och termer för att förstå och tolka texterna.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter inom samhällskunskap.\n<br>\nAnvända grundläggande begrepp och grammatik inom samhällskunskap.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer inom samhällskunskap med grundläggande begrepp, ordförråd och uttal.\n<br><br>', 'Samhällskunskap'),
+(49, NULL, NULL, 'E', NULL, NULL, '<h2> Biologi - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Biologi - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Biologi - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare biologiska texter på svenska.\n<br>\nIdentifiera huvudidéer och viktig information inom biologiska ämnen.\n\n<br>Använda grundläggande biologiskt ordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning inom biologi:</h3><br>\n\nKunna formulera enkla meningar och korta texter om biologiska ämnen på svenska.\n<br>\nAnvända grundläggande biologiskt ordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation inom biologi:<br></h3>\n  Deltagande i enkla muntliga konversationer om biologiska ämnen med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Biologi'),
+(50, NULL, NULL, 'D', NULL, NULL, '<h2> Kemi - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Kemi - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Kemi - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om kemi.\n<br>\nIdentifiera huvudidéer och viktig information i texter om kemi.\n\n<br>Använda grundläggande ordförråd relaterat till kemi för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om kemi.\n<br>\nAnvända grundläggande ordförråd och grammatik relaterat till kemi.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om kemi med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Kemi'),
+(51, NULL, NULL, 'A', NULL, NULL, '<h2>Idrott - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2>Idrott - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2>Idrott - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om olika idrotter och dess regler på svenska.\n<br>\nIdentifiera huvudidéer och viktig information i texter om träning och hälsa.\n<br>Använda grundläggande ordförråd för att förstå och uttrycka sig inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om olika idrotter, träning och hälsa på svenska.\n<br>\nAnvända grundläggande ordförråd och grammatik inom idrottsrelaterade ämnen.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om olika idrotter, träning och hälsa med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Idrott'),
+(52, NULL, NULL, 'B', NULL, NULL, '<h2>Musik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', '<h2>Musik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', '<h2>Musik - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare texter om musik.\n<br>\nIdentifiera huvudidéer och viktig information om musik i texter.\n\n<br>Använda grundläggande musikrelaterade termer för att förstå och uttrycka sig om musik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om musik.\n<br>\nAnvända grundläggande musikrelaterade termer och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga konversationer om musik med grundläggande musikrelaterade termer och uttal.\n\n<br>\n<br>', 'Musik'),
+(53, NULL, NULL, 'A', NULL, NULL, '<h2> Programmering - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Programmering - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', '<h2> Programmering - Nivå A:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enklare programmeringstexter.\n<br>\nIdentifiera huvudidéer och viktig information i programmeringsmaterial.\n\n<br>Använda grundläggande programmeringsordförråd för att förstå och uttrycka sig.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla programmeringskod och korta beskrivningar på svenska.\n<br>\nAnvända grundläggande programmeringsordförråd och grammatik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga programmeringsdiskussioner med grundläggande ordförråd och uttal.\n\n<br>\n<br>', 'Programmering'),
+(54, NULL, NULL, 'B', NULL, NULL, '<h2> Teknik - Nivå E :</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', '<h2> Teknik - Nivå C:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', '<h2> Teknik - Nivå E:</h2><br>\n<h3>Läsning och förståelse:</h3>\n\n<br>\nKunna förstå och tolka enkla texter inom ämnet Teknik.\n<br>\nIdentifiera huvudidéer och viktig information i texter om Teknik.\n\n<br>Använda grundläggande terminologi för att förstå och uttrycka sig inom ämnet Teknik.\n<br>\n\n<h3>Skrivning:</h3><br>\n\nKunna formulera enkla meningar och korta texter om ämnet Teknik.\n<br>\nAnvända grundläggande terminologi och grammatik inom ämnet Teknik.\n<br>\n\n<h3>Muntlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga samtal om ämnet Teknik med grundläggande terminologi och uttal.\n\n<br>\n<br>', 'Teknik');
 
 -- --------------------------------------------------------
 
@@ -225,8 +224,7 @@ INSERT INTO `ledighetsansökningar` (`ledighetsansökningID`, `användarID`, `st
 CREATE TABLE `lektion` (
   `lektionID` int(11) NOT NULL,
   `kursID` int(11) DEFAULT NULL,
-  `datum` datetime DEFAULT NULL,
-  `namnID` int(11) DEFAULT NULL,
+  `sal` tinytext DEFAULT NULL,
   `startTid` datetime DEFAULT NULL,
   `slutTid` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -238,15 +236,15 @@ CREATE TABLE `lektion` (
 --
 
 CREATE TABLE `namn` (
-  `nameID` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `namnID` int(11) NOT NULL,
+  `namn` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `namn`
 --
 
-INSERT INTO `namn` (`nameID`, `name`) VALUES
+INSERT INTO `namn` (`namnID`, `namn`) VALUES
 (1, 'Linus'),
 (2, 'Anders'),
 (3, 'Lindbäck'),
@@ -259,7 +257,12 @@ INSERT INTO `namn` (`nameID`, `name`) VALUES
 (10, 'AI 1'),
 (11, 'AI 2'),
 (12, 'WALLA'),
-(13, 'matte1');
+(13, 'matte1'),
+(14, 'Erwin'),
+(15, 'Hörnell'),
+(16, 'the'),
+(17, 'goat'),
+(19, NULL);
 
 -- --------------------------------------------------------
 
@@ -290,8 +293,9 @@ CREATE TABLE `roll` (
 --
 
 INSERT INTO `roll` (`rollID`, `roll`) VALUES
-(1, 'Lärare'),
-(2, 'Elev');
+(1, 'elev'),
+(2, 'lärare'),
+(3, 'admin');
 
 -- --------------------------------------------------------
 
@@ -339,19 +343,19 @@ ALTER TABLE `inlämningar`
   ADD KEY `fk_uppgiftID_Inlamningar` (`uppgiftID`);
 
 --
--- Index för tabell `inskriving_kurs`
---
-ALTER TABLE `inskriving_kurs`
-  ADD PRIMARY KEY (`kursInskrivningID`),
-  ADD KEY `fk_ElevID_Inskriving_kurs` (`elevID`),
-  ADD KEY `fk_KursID_Inskriving_kurs` (`kursID`);
-
---
 -- Index för tabell `inskrivningklass`
 --
 ALTER TABLE `inskrivningklass`
   ADD KEY `fk_KlassID_inskrivningklass` (`klassID`),
   ADD KEY `fk_anvandarID_inskrivningklass` (`användarID`);
+
+--
+-- Index för tabell `inskrivningkurs`
+--
+ALTER TABLE `inskrivningkurs`
+  ADD PRIMARY KEY (`kursInskrivningID`),
+  ADD KEY `fk_ElevID_inskrivningkurs` (`elevID`),
+  ADD KEY `fk_KursID_inskrivningkurs` (`kursID`);
 
 --
 -- Index för tabell `klass`
@@ -387,13 +391,13 @@ ALTER TABLE `ledighetsansökningar`
 ALTER TABLE `lektion`
   ADD PRIMARY KEY (`lektionID`),
   ADD KEY `fk_kursID_Lektion` (`kursID`),
-  ADD KEY `fk_namnID_Lektion` (`namnID`);
+  ADD KEY `fk_namnID_Lektion` (`sal`(255));
 
 --
 -- Index för tabell `namn`
 --
 ALTER TABLE `namn`
-  ADD PRIMARY KEY (`nameID`);
+  ADD PRIMARY KEY (`namnID`);
 
 --
 -- Index för tabell `närvaro`
@@ -424,7 +428,7 @@ ALTER TABLE `uppgifter`
 -- AUTO_INCREMENT för tabell `användare`
 --
 ALTER TABLE `användare`
-  MODIFY `användarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `användarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT för tabell `inlämningar`
@@ -433,9 +437,9 @@ ALTER TABLE `inlämningar`
   MODIFY `inlämningID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT för tabell `inskriving_kurs`
+-- AUTO_INCREMENT för tabell `inskrivningkurs`
 --
-ALTER TABLE `inskriving_kurs`
+ALTER TABLE `inskrivningkurs`
   MODIFY `kursInskrivningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
@@ -472,13 +476,13 @@ ALTER TABLE `lektion`
 -- AUTO_INCREMENT för tabell `namn`
 --
 ALTER TABLE `namn`
-  MODIFY `nameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `namnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT för tabell `roll`
 --
 ALTER TABLE `roll`
-  MODIFY `rollID` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rollID` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT för tabell `uppgifter`
@@ -494,15 +498,15 @@ ALTER TABLE `uppgifter`
 -- Restriktioner för tabell `användare`
 --
 ALTER TABLE `användare`
-  ADD CONSTRAINT `fk_efternamnID_Anvandare` FOREIGN KEY (`efternamnID`) REFERENCES `namn` (`nameID`),
-  ADD CONSTRAINT `fk_namnID_Anvandare` FOREIGN KEY (`namnID`) REFERENCES `namn` (`nameID`),
+  ADD CONSTRAINT `fk_efternamnID_Anvandare` FOREIGN KEY (`efternamnID`) REFERENCES `namn` (`namnID`),
+  ADD CONSTRAINT `fk_namnID_Anvandare` FOREIGN KEY (`namnID`) REFERENCES `namn` (`namnID`),
   ADD CONSTRAINT `fk_rollID_Anvandare` FOREIGN KEY (`rollID`) REFERENCES `roll` (`rollID`);
 
 --
 -- Restriktioner för tabell `kurs`
 --
 ALTER TABLE `kurs`
-  ADD CONSTRAINT `fk_namnID_Kurs` FOREIGN KEY (`namnID`) REFERENCES `namn` (`nameID`);
+  ADD CONSTRAINT `fk_namnID_Kurs` FOREIGN KEY (`namnID`) REFERENCES `namn` (`namnID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
