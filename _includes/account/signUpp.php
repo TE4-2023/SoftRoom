@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $roleID = $_POST['roleID'];
     $lastnameID = $_POST['lastname'];
     $personnummer = $_POST['personnummer'];
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    //$hashedPassword = password_hash($password, PASSWORD_BCRYPT); salting happens in sql
 /////////////////////////////////////////////////////////////////////////////
     $queryCheckEmail = "SELECT användarID FROM användare WHERE email = :email";
     $stmtCheckEmail = $pdo->prepare($queryCheckEmail);
@@ -54,18 +54,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 /////////////////////////////////////////////////////////////////////////////
     $query = $pdo->prepare("INSERT INTO användare (namnID, email, rollID, efternamnID, personNummer, lösenord) 
-                            VALUES (:nameID, :email, :roleID, :lastnameID, :personnummer,:hashedPassword)");
+                            VALUES (:nameID, :email, :roleID, :lastnameID, :personnummer,SHA(:password))");
     $query->bindParam(':nameID', $username, PDO::PARAM_INT);
     $query->bindParam(':email', $email, PDO::PARAM_STR);
     $query->bindParam(':roleID', $roleID, PDO::PARAM_INT);
     $query->bindParam(':lastnameID', $lastnameID, PDO::PARAM_INT);
     $query->bindParam(':personnummer', $personnummer, PDO::PARAM_STR);
-    $query->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
+    $query->bindParam(':password', $password, PDO::PARAM_STR);
     
 
     if ($query->execute()) {
         echo "Registration successful! Redirecting to login page...";
-        //header("Location: ../../logIn.html");
+        header("Location: ../../logga-in/index.php");
         exit();
     } else {
         echo "Error! Registration failed.";

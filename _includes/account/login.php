@@ -22,12 +22,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $query->execute($data);
     
     if ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        $_SESSION["uid"] = $query->fetch()['personNummer'];
+        session_start();
+        $_SESSION["uid"] = $row['personNummer'];
         $query = null;
         header("Location: ../../startsida");
     }
     else {
         $query = null;
+
         header("Location: ../../logga-in?error=notfound"); //test
     }
 }
