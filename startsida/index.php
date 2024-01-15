@@ -40,6 +40,29 @@ if (isUserLoggedIn($pdo)) {
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
 </header>
 
+<div class="menu" id="sideMenu">
+    <div class="dropdown">
+    <a href="#">Startsida</a>
+   <a href="#" class="dropdown-link" id="schoolDropdownToggle">Skolinformation
+        <i class="fa fa-caret-down"></i>
+        </a>
+      <div class="dropdown-container">
+        <a href="#">Kontaktlistor</a>
+      </div>     
+       <a href="#" class="dropdown-link" id="attendanceDropdownToggle">Frånvaroanmälan-Alla elever
+        <i class="fa fa-caret-down"></i>
+        </a>
+      <div class="dropdown-container">
+        <a href="#">Mina mentorselever</a>
+        <a href="#">Oanmäld-frånvaro</a>
+      </div>   
+    <a href="#">Skapa uppgift</a>
+    <a href="#">Skapa-Kurs</a>
+    <a href="#">Tidsbokningar</a>
+    <a href="#">Sätt-Betyg</a>
+ </div>
+</div>
+
 
 <!-- DISPLAY IF LOGGED IN -->
 <?php 
@@ -111,7 +134,22 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
 
     <div class="kurser">
         <?php
-        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.ID");
+
+        function getName($userID, $pdo)
+        {
+            // Hämta användarens namn från databasen
+            $userSQL = "SELECT anv.namnID, anv.efternamnID, fn.namn AS fornamn, en.namn AS efternamn FROM användare AS anv JOIN namn AS fn ON anv.nameID = fn.ID JOIN namn AS en ON anv.efternamnID = en.ID WHERE anv.användarID = :userID";
+
+            $stmt = $pdo->prepare($userSQL);
+            $stmt->bindParam(':userID', $userID);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $name = $result['fornamn'] . " " . $result['efternamn'];
+
+            return $name;
+        }
+
+        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.name, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.nameID");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -145,7 +183,11 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
     <h2>&copy; 2023 Softroom</h2>
 </footer>
 
-
+<script>
+    function toggleMenu() {
+        sideMenu.style.left = (sideMenu.style.left === "0px") ? "-300px" : "0";
+    }
+</script>
 <script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
