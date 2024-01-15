@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 15 jan 2024 kl 09:48
+-- Tid vid skapande: 15 jan 2024 kl 13:56
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -33,17 +33,19 @@ CREATE TABLE `användare` (
   `email` varchar(255) DEFAULT NULL,
   `rollID` tinyint(4) DEFAULT NULL,
   `efternamnID` int(11) DEFAULT NULL,
-  `personNummer` varchar(16) DEFAULT NULL
+  `personNummer` varchar(16) DEFAULT NULL,
+  `lösenord` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `användare`
 --
 
-INSERT INTO `användare` (`användarID`, `namnID`, `email`, `rollID`, `efternamnID`, `personNummer`) VALUES
-(4, 2, 'test@mail.com', 1, 3, '1234567890'),
-(5, 1, 'mail@mail.com', 1, 2, '1234567890'),
-(6, 4, 'mail@mail.mail', 2, 5, '1234567890');
+INSERT INTO `användare` (`användarID`, `namnID`, `email`, `rollID`, `efternamnID`, `personNummer`, `lösenord`) VALUES
+(4, 2, 'test@mail.com', 1, 3, '1234567890', NULL),
+(5, 1, 'mail@mail.com', 1, 2, '1234567890', NULL),
+(6, 4, 'mail@mail.mail', 2, 5, '1234567890', NULL),
+(15, 19, 'h@c.sson', 1, 19, '12', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
 
 -- --------------------------------------------------------
 
@@ -259,7 +261,10 @@ INSERT INTO `namn` (`nameID`, `name`) VALUES
 (10, 'AI 1'),
 (11, 'AI 2'),
 (12, 'WALLA'),
-(13, 'matte1');
+(13, 'matte1'),
+(16, 't1'),
+(17, 't2'),
+(19, '12');
 
 -- --------------------------------------------------------
 
@@ -424,7 +429,7 @@ ALTER TABLE `uppgifter`
 -- AUTO_INCREMENT för tabell `användare`
 --
 ALTER TABLE `användare`
-  MODIFY `användarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `användarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT för tabell `inlämningar`
@@ -472,7 +477,7 @@ ALTER TABLE `lektion`
 -- AUTO_INCREMENT för tabell `namn`
 --
 ALTER TABLE `namn`
-  MODIFY `nameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `nameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT för tabell `roll`
