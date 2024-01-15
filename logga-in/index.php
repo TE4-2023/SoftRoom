@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../_styles/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -21,7 +21,7 @@
             <button type="submit">Login</button>
         </form>
         <div class="lgTxtCn">
-            <p><a href="changePassword.html">glömt lösenord?</a></p>
+            <p><a href="../skapa-konto/index.php">skapa konto</a></p>
             
         </div>
     </div>

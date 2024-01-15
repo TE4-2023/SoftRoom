@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmtCheckEmail->rowCount() > 0) {
         echo "Email is already in use. Please choose a different email.";
-        header("Location: ../logga-in/signUpp.html");
+        header("Location: ../../skapa-konto/signUpp.html");
         exit();
     }
 /////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmtLastName->rowCount() > 0) {
         $row = $stmtLastName->fetch(PDO::FETCH_ASSOC);
-        $lastnameID = $row['nameID'];
+        $lastnameID = $row['namnID'];
     } else {
         $insertLastNameQuery = $pdo->prepare("INSERT INTO namn (namn) VALUES (:lastnameID)");
         $insertLastNameQuery->bindParam(':lastnameID', $lastnameID);
