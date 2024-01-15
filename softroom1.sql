@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 09 jan 2024 kl 09:38
--- Serverversion: 10.4.24-MariaDB
--- PHP-version: 8.1.6
+-- Tid vid skapande: 15 jan 2024 kl 09:48
+-- Serverversion: 10.4.28-MariaDB
+-- PHP-version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `användare` (
   `rollID` tinyint(4) DEFAULT NULL,
   `efternamnID` int(11) DEFAULT NULL,
   `personNummer` varchar(16) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `användare`
@@ -52,11 +52,11 @@ INSERT INTO `användare` (`användarID`, `namnID`, `email`, `rollID`, `efternamn
 --
 
 CREATE TABLE `inlämningar` (
-  `ID` int(11) NOT NULL,
-  `AnvändarID` int(11) DEFAULT NULL,
+  `inlämningID` int(11) NOT NULL,
+  `användarID` int(11) DEFAULT NULL,
   `uppgiftID` int(11) DEFAULT NULL,
   `datum` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,9 @@ CREATE TABLE `inlämningar` (
 --
 
 CREATE TABLE `inskriving_kurs` (
-  `ID` int(11) NOT NULL,
-  `ElevID` int(11) DEFAULT NULL,
-  `KursID` int(11) DEFAULT NULL,
+  `kursInskrivningID` int(11) NOT NULL,
+  `elevID` int(11) DEFAULT NULL,
+  `kursID` int(11) DEFAULT NULL,
   `betyg` char(1) DEFAULT NULL,
   `matrisVärden` varchar(50) DEFAULT NULL,
   `matris` varchar(255) DEFAULT NULL,
@@ -75,13 +75,13 @@ CREATE TABLE `inskriving_kurs` (
   `martistext2` varchar(2000) DEFAULT NULL,
   `martistext3` varchar(2000) DEFAULT NULL,
   `selectedSubject` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `inskriving_kurs`
 --
 
-INSERT INTO `inskriving_kurs` (`ID`, `ElevID`, `KursID`, `betyg`, `matrisVärden`, `matris`, `martistext1`, `martistext2`, `martistext3`, `selectedSubject`) VALUES
+INSERT INTO `inskriving_kurs` (`kursInskrivningID`, `elevID`, `kursID`, `betyg`, `matrisVärden`, `matris`, `martistext1`, `martistext2`, `martistext3`, `selectedSubject`) VALUES
 (44, NULL, NULL, 'C', NULL, NULL, 'Svenska - Nivå E:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå C:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska - Nivå A:Läsning och förståelse:Kunna förstå och tolka enklare texter på svenska.Identifiera huvudidéer och viktig information i texter.Använda grundläggande ordförråd för att förstå och uttrycka sig.Skrivning:Kunna formulera enkla meningar och korta texter på svenska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Svenska'),
 (45, NULL, NULL, 'B', NULL, NULL, 'Engelska - Nivå E:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå C:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska - Nivå A:Läsning och förståelse:Förstå enkla texter på engelska.Identifiera huvudidéer och viktig information i texter.Identifiera grundläggande information och huvudidéer i texterna.Skrivning:Kunna formulera enkla meningar och korta texter på engelska.Använda grundläggande ordförråd och grammatik.Muntlig kommunikation:\n  Deltagande i enkla muntliga konversationer med grundläggande ordförråd och uttal.', 'Engelska'),
 (46, NULL, NULL, 'D', NULL, NULL, '<h2>Matematik - Nivå E:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå C:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', '<h2>Matematik - Nivå A:</h2><br>\n<h3>Problemlösning och analys:</h3>\n\n<br>\nKunna lösa enkla matematiska problem och analysera dem.\n<br>\nIdentifiera grundläggande matematiska begrepp och relationer.\n\n<br>Använda grundläggande matematiskt språk för att förstå och beskriva problem och lösningar.\n<br>\n\n<h3>Beräkning och mätning:</h3><br>\n\nKunna utföra enkla beräkningar och mätningar inom matematik.\n<br>\nAnvända grundläggande matematiska operationer och mättekniker.\n<br>\n\n<h3>Muntlig och skriftlig kommunikation:<br></h3>\n  Deltagande i enkla muntliga och skriftliga diskussioner inom matematik med användning av grundläggande matematiska begrepp och uttrycksformer.\n\n<br>\n<br>', 'Matte'),
@@ -101,15 +101,15 @@ INSERT INTO `inskriving_kurs` (`ID`, `ElevID`, `KursID`, `betyg`, `matrisVärden
 --
 
 CREATE TABLE `inskrivningklass` (
-  `KlassID` int(11) DEFAULT NULL,
+  `klassID` int(11) DEFAULT NULL,
   `användarID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `inskrivningklass`
 --
 
-INSERT INTO `inskrivningklass` (`KlassID`, `användarID`) VALUES
+INSERT INTO `inskrivningklass` (`klassID`, `användarID`) VALUES
 (1, 6);
 
 -- --------------------------------------------------------
@@ -119,17 +119,17 @@ INSERT INTO `inskrivningklass` (`KlassID`, `användarID`) VALUES
 --
 
 CREATE TABLE `klass` (
-  `KlassID` int(11) NOT NULL,
-  `Klass` varchar(50) DEFAULT NULL,
-  `Mentor1` int(11) DEFAULT NULL,
-  `Mentor2` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `klassID` int(11) NOT NULL,
+  `klass` varchar(50) DEFAULT NULL,
+  `mentor1` int(11) DEFAULT NULL,
+  `mentor2` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `klass`
 --
 
-INSERT INTO `klass` (`KlassID`, `Klass`, `Mentor1`, `Mentor2`) VALUES
+INSERT INTO `klass` (`klassID`, `klass`, `mentor1`, `mentor2`) VALUES
 (1, 'TE5', 4, 5);
 
 -- --------------------------------------------------------
@@ -142,8 +142,8 @@ CREATE TABLE `klassschema` (
   `eventID` int(11) NOT NULL,
   `lektionID` int(11) DEFAULT NULL,
   `startTid` datetime DEFAULT NULL,
-  `SlutTid` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `slutTid` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,7 @@ CREATE TABLE `kurs` (
   `aktiv` bit(1) DEFAULT NULL,
   `användarID` int(11) DEFAULT NULL,
   `picture` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `kurs`
@@ -181,21 +181,21 @@ INSERT INTO `kurs` (`kursID`, `namnID`, `aktiv`, `användarID`, `picture`) VALUE
 --
 
 CREATE TABLE `ledighetsansökningar` (
-  `ID` int(11) NOT NULL,
-  `AnvändarID` int(11) NOT NULL,
+  `ledighetsansökningID` int(11) NOT NULL,
+  `användarID` int(11) NOT NULL,
   `startDatum` datetime NOT NULL,
   `slutDatum` datetime NOT NULL,
   `information` text DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
   `skapad` datetime DEFAULT NULL,
   `svaradAv` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `ledighetsansökningar`
 --
 
-INSERT INTO `ledighetsansökningar` (`ID`, `AnvändarID`, `startDatum`, `slutDatum`, `information`, `status`, `skapad`, `svaradAv`) VALUES
+INSERT INTO `ledighetsansökningar` (`ledighetsansökningID`, `användarID`, `startDatum`, `slutDatum`, `information`, `status`, `skapad`, `svaradAv`) VALUES
 (1, 7, '2023-11-27 13:47:04', '2023-11-30 13:47:04', 'Jag vill inte kommqa till skola nfuck er och eran utbilödning', b'1', '2023-11-27 13:47:04', NULL),
 (2, 7, '2023-11-10 00:00:00', '2023-11-22 00:00:00', 'dddd', b'1', '2023-11-29 14:54:03', NULL),
 (3, 7, '2023-11-30 00:00:00', '2023-12-09 00:00:00', 'ledigt tack', b'0', '2023-11-29 14:57:49', NULL),
@@ -223,13 +223,13 @@ INSERT INTO `ledighetsansökningar` (`ID`, `AnvändarID`, `startDatum`, `slutDat
 --
 
 CREATE TABLE `lektion` (
-  `LektionID` int(11) NOT NULL,
+  `lektionID` int(11) NOT NULL,
   `kursID` int(11) DEFAULT NULL,
   `datum` datetime DEFAULT NULL,
   `namnID` int(11) DEFAULT NULL,
   `startTid` datetime DEFAULT NULL,
   `slutTid` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -238,15 +238,15 @@ CREATE TABLE `lektion` (
 --
 
 CREATE TABLE `namn` (
-  `ID` int(11) NOT NULL,
-  `namn` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nameID` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `namn`
 --
 
-INSERT INTO `namn` (`ID`, `namn`) VALUES
+INSERT INTO `namn` (`nameID`, `name`) VALUES
 (1, 'Linus'),
 (2, 'Anders'),
 (3, 'Lindbäck'),
@@ -268,11 +268,11 @@ INSERT INTO `namn` (`ID`, `namn`) VALUES
 --
 
 CREATE TABLE `närvaro` (
-  `AnvändarID` int(11) DEFAULT NULL,
+  `användarID` int(11) DEFAULT NULL,
   `lektionID` int(11) DEFAULT NULL,
-  `FrånvaroILektionen` smallint(6) DEFAULT NULL,
-  `GitlitgFrånvaro` smallint(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `frånvaroILektionen` smallint(6) DEFAULT NULL,
+  `gitlitgFrånvaro` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -281,15 +281,15 @@ CREATE TABLE `närvaro` (
 --
 
 CREATE TABLE `roll` (
-  `ID` tinyint(4) NOT NULL,
+  `rollID` tinyint(4) NOT NULL,
   `roll` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `roll`
 --
 
-INSERT INTO `roll` (`ID`, `roll`) VALUES
+INSERT INTO `roll` (`rollID`, `roll`) VALUES
 (1, 'Lärare'),
 (2, 'Elev');
 
@@ -305,15 +305,15 @@ CREATE TABLE `uppgifter` (
   `namnID` int(11) DEFAULT NULL,
   `titel` varchar(255) NOT NULL,
   `beskrivningText` varchar(255) DEFAULT NULL,
-  `InlämningsDatum` datetime DEFAULT NULL,
+  `inlämningsDatum` datetime DEFAULT NULL,
   `inlämnad` bit(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `uppgifter`
 --
 
-INSERT INTO `uppgifter` (`uppgiftID`, `kursID`, `namnID`, `titel`, `beskrivningText`, `InlämningsDatum`, `inlämnad`) VALUES
+INSERT INTO `uppgifter` (`uppgiftID`, `kursID`, `namnID`, `titel`, `beskrivningText`, `inlämningsDatum`, `inlämnad`) VALUES
 (1, 1, 5, 'Det var fryx på fest', 'Finns det 1080p skärmar som är 4k? ', '2023-12-15 00:00:00', b'0'),
 (2, NULL, NULL, 'hej hej', 'gg game', '2023-12-07 00:00:00', NULL);
 
@@ -334,32 +334,32 @@ ALTER TABLE `användare`
 -- Index för tabell `inlämningar`
 --
 ALTER TABLE `inlämningar`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_AnvandarID_Inlamningar` (`AnvändarID`),
+  ADD PRIMARY KEY (`inlämningID`),
+  ADD KEY `fk_AnvandarID_Inlamningar` (`användarID`),
   ADD KEY `fk_uppgiftID_Inlamningar` (`uppgiftID`);
 
 --
 -- Index för tabell `inskriving_kurs`
 --
 ALTER TABLE `inskriving_kurs`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_ElevID_Inskriving_kurs` (`ElevID`),
-  ADD KEY `fk_KursID_Inskriving_kurs` (`KursID`);
+  ADD PRIMARY KEY (`kursInskrivningID`),
+  ADD KEY `fk_ElevID_Inskriving_kurs` (`elevID`),
+  ADD KEY `fk_KursID_Inskriving_kurs` (`kursID`);
 
 --
 -- Index för tabell `inskrivningklass`
 --
 ALTER TABLE `inskrivningklass`
-  ADD KEY `fk_KlassID_inskrivningklass` (`KlassID`),
+  ADD KEY `fk_KlassID_inskrivningklass` (`klassID`),
   ADD KEY `fk_anvandarID_inskrivningklass` (`användarID`);
 
 --
 -- Index för tabell `klass`
 --
 ALTER TABLE `klass`
-  ADD PRIMARY KEY (`KlassID`),
-  ADD KEY `KlassID` (`KlassID`),
-  ADD KEY `KlassID_2` (`KlassID`);
+  ADD PRIMARY KEY (`klassID`),
+  ADD KEY `KlassID` (`klassID`),
+  ADD KEY `KlassID_2` (`klassID`);
 
 --
 -- Index för tabell `klassschema`
@@ -379,13 +379,13 @@ ALTER TABLE `kurs`
 -- Index för tabell `ledighetsansökningar`
 --
 ALTER TABLE `ledighetsansökningar`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ledighetsansökningID`);
 
 --
 -- Index för tabell `lektion`
 --
 ALTER TABLE `lektion`
-  ADD PRIMARY KEY (`LektionID`),
+  ADD PRIMARY KEY (`lektionID`),
   ADD KEY `fk_kursID_Lektion` (`kursID`),
   ADD KEY `fk_namnID_Lektion` (`namnID`);
 
@@ -393,20 +393,20 @@ ALTER TABLE `lektion`
 -- Index för tabell `namn`
 --
 ALTER TABLE `namn`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`nameID`);
 
 --
 -- Index för tabell `närvaro`
 --
 ALTER TABLE `närvaro`
-  ADD KEY `fk_AnvandarID_Narvaro` (`AnvändarID`),
+  ADD KEY `fk_AnvandarID_Narvaro` (`användarID`),
   ADD KEY `fk_lektionID_Narvaro` (`lektionID`);
 
 --
 -- Index för tabell `roll`
 --
 ALTER TABLE `roll`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`rollID`);
 
 --
 -- Index för tabell `uppgifter`
@@ -430,19 +430,19 @@ ALTER TABLE `användare`
 -- AUTO_INCREMENT för tabell `inlämningar`
 --
 ALTER TABLE `inlämningar`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inlämningID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT för tabell `inskriving_kurs`
 --
 ALTER TABLE `inskriving_kurs`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `kursInskrivningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT för tabell `klass`
 --
 ALTER TABLE `klass`
-  MODIFY `KlassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `klassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT för tabell `klassschema`
@@ -460,25 +460,25 @@ ALTER TABLE `kurs`
 -- AUTO_INCREMENT för tabell `ledighetsansökningar`
 --
 ALTER TABLE `ledighetsansökningar`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ledighetsansökningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT för tabell `lektion`
 --
 ALTER TABLE `lektion`
-  MODIFY `LektionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lektionID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT för tabell `namn`
 --
 ALTER TABLE `namn`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `nameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT för tabell `roll`
 --
 ALTER TABLE `roll`
-  MODIFY `ID` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rollID` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT för tabell `uppgifter`
@@ -494,15 +494,15 @@ ALTER TABLE `uppgifter`
 -- Restriktioner för tabell `användare`
 --
 ALTER TABLE `användare`
-  ADD CONSTRAINT `fk_efternamnID_Anvandare` FOREIGN KEY (`efternamnID`) REFERENCES `namn` (`ID`),
-  ADD CONSTRAINT `fk_namnID_Anvandare` FOREIGN KEY (`namnID`) REFERENCES `namn` (`ID`),
-  ADD CONSTRAINT `fk_rollID_Anvandare` FOREIGN KEY (`rollID`) REFERENCES `roll` (`ID`);
+  ADD CONSTRAINT `fk_efternamnID_Anvandare` FOREIGN KEY (`efternamnID`) REFERENCES `namn` (`nameID`),
+  ADD CONSTRAINT `fk_namnID_Anvandare` FOREIGN KEY (`namnID`) REFERENCES `namn` (`nameID`),
+  ADD CONSTRAINT `fk_rollID_Anvandare` FOREIGN KEY (`rollID`) REFERENCES `roll` (`rollID`);
 
 --
 -- Restriktioner för tabell `kurs`
 --
 ALTER TABLE `kurs`
-  ADD CONSTRAINT `fk_namnID_Kurs` FOREIGN KEY (`namnID`) REFERENCES `namn` (`ID`);
+  ADD CONSTRAINT `fk_namnID_Kurs` FOREIGN KEY (`namnID`) REFERENCES `namn` (`nameID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
