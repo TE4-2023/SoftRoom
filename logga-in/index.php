@@ -8,42 +8,20 @@
     <link rel="stylesheet" href="signUpp.css">
 </head>
 
-<body>
-    <div class="signUpp-container">
-        <h2>Sign Upp</h2>
-        <form action="../_includes/account/signUpp.php" method="POST">
-            <div class="input-container">
-                <label for="förnamn">förnamn</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="input-container">
-                <label for="efternamn">efternamn</label>
-                <input type="text" id="lastnameID" name="lastnameID" required>
-            </div>
-            <div class="input-container">
-                <label for="mail">Mail</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="input-container">
-                <label for="roll">roll</label>
-                <select id="roleID" name="roleID">
-                    <option value="1">elev</option>
-                    <option value="2">lärare</option>
-                    <option value="3">admin</option>
-                </select>
-            </div>
-            <div class="input-container">
-                <label for="personnummer">personnummer</label>
-                <input type="text" id="personnummer" pattern="\d{8}-?\d{4}" name="personnummer" placeholder="YYYYMMDD-XXXX" required>
-            </div>
-            <div class="input-container">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">SignUpp</button>
-
-        </form>
-    </div>
-    </div>
-</body>
+  <body>
+    <form action="../_includes/account/login.php" method="post" style="padding:35%;padding-top:10%;">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">E-post</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            <div id="emailHelp" class="form-text">Vi delar aldrig din e-post address med någon annan.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Lösernord</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            <div id="pwdHelp" class="form-text">Håll ditt lösenord hemligt.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="../skapa-konto">Skapa konto</a>
+    </form>
+  </body>
 </html>

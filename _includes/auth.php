@@ -13,14 +13,14 @@ function isUserLoggedIn($pdo) {
         return false;
     }
     $userID = $_SESSION['uid'];
-    $userSQL = "SELECT * FROM användare WHERE personNummer VALUES :ssn";
+    $userSQL = "SELECT * FROM användare WHERE personNummer = :ssn";
 
     $stmt = $pdo->prepare($userSQL);
     $stmt->bindParam(':ssn', $userID);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->rowCount() == 0) {
+    if (!$result) {
         return false;
     }
     return true;

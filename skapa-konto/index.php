@@ -13,28 +13,36 @@
     <form action="../_includes/account/register-account.php" method="post" style="padding:35%;padding-top:10%;">
         <div class="mb-3">
             <label for="email" class="form-label">E-post</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
             <div id="emailHelp" class="form-text">Vi delar aldrig din e-post address med någon annan.</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Lösernord</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required>
             <div id="pwdHelp" class="form-text">Håll ditt lösenord hemligt.</div>
         </div>
         <div class="mb-3">
             <label for="fn" class="form-label">Förnamn</label>
-            <input type="text" class="form-control" id="fn" aria-describedby="emailHelp" name="fn">
+            <input type="text" class="form-control" id="fn" aria-describedby="emailHelp" name="fn" required>
         </div>
         <div class="mb-3">
             <label for="en" class="form-label">Efternamn</label>
-            <input type="text" class="form-control" id="en" name="en">
+            <input type="text" class="form-control" id="en" name="en" required>
         </div>
         <div class="mb-3">
             <label for="ssn" class="form-label">Person Nummer</label>
-            <input type="text" class="form-control" id="ssn" name="ssn">
+            <input type="text" class="form-control" id="ssn" name="ssn" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="../logga-in">Logga in</a>
+        <br>
+        <?php
+          if (isset($_GET["error"])) {
+            ?>
+              <label class="form-label" style="color:red;"><?php echo $_GET["error"]; ?></label>
+            <?php
+          }
+        ?>
     </form>
   </body>
 </html>
