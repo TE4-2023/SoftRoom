@@ -13,16 +13,24 @@
     <form action="../_includes/account/login.php" method="post" style="padding:35%;padding-top:10%;">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">E-post</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
             <div id="emailHelp" class="form-text">Vi delar aldrig din e-post address med någon annan.</div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Lösernord</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
             <div id="pwdHelp" class="form-text">Håll ditt lösenord hemligt.</div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="../skapa-konto">Skapa konto</a>
+        <br>
+        <?php
+          if (isset($_GET["error"])) {
+            ?>
+              <label class="form-label" style="color:red;"><?php echo $_GET["error"]; ?></label>
+            <?php
+          }
+        ?>
     </form>
   </body>
 </html>

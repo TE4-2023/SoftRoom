@@ -4,6 +4,8 @@
 
 include_once "../connect.php";
 
+session_start();
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Grabbing the data
     $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
@@ -22,13 +24,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $query->execute($data);
     
     if ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        $_SESSION["uid"] = $query->fetch()['personNummer'];
+        $_SESSION["uid"] = $row['personNummer'];
         $query = null;
         header("Location: ../../startsida");
     }
     else {
         $query = null;
-        header("Location: ../../logga-in?error=notfound"); //test
+        header("Location: ../../logga-in?error=Fel e-post eller lösenord"); //test
     }
 }
 else {

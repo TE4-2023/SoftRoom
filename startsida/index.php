@@ -4,9 +4,13 @@
 <!-- Includes -->
 <?php
 include_once "../_includes/connect.php"; // Connect to Database
-//include_once "../_includes/allowaccess.php";
+include_once "../_includes/auth.php";
 
-//include_once "../_includes/userutil.php"; // Utilities included such as isUserLoggedIn
+if (isUserLoggedIn($pdo)) {
+    echo "hi";
+} else {
+    header("Location: ../logga-in");
+}
 ?>
 
 <!-- Webpage -->
@@ -18,7 +22,7 @@ include_once "../_includes/connect.php"; // Connect to Database
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./_styles/style.css">
+    <link rel="stylesheet" href="../_styles/style.css">
 
     <!-- Current title -->
     <title>Softroom</title>
