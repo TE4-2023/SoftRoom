@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-
-<html lang="sv">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skolsida</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </head>
-
-  <body>
-    <form action="../_includes/account/login.php" method="post" style="padding:35%;padding-top:10%;">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">E-post</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-            <div id="emailHelp" class="form-text">Vi delar aldrig din e-post address med någon annan.</div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../_styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="../_includes/account/login.php" method="POST">
+            <div class="input-container">
+                <label for="email">email</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="lgTxtCn">
+            <p><a href="../skapa-konto/index.php">skapa konto</a></p>
+            
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Lösernord</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-            <div id="pwdHelp" class="form-text">Håll ditt lösenord hemligt.</div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="../skapa-konto">Skapa konto</a>
-    </form>
-  </body>
+    </div>
+
+</body>
 </html>
