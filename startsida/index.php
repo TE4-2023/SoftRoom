@@ -138,7 +138,11 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
         function getName($userID, $pdo)
         {
             // Hämta användarens namn från databasen
-            $userSQL = "SELECT anv.namnID, anv.efternamnID, fn.namn AS fornamn, en.namn AS efternamn FROM användare AS anv JOIN namn AS fn ON anv.nameID = fn.ID JOIN namn AS en ON anv.efternamnID = en.ID WHERE anv.användarID = :userID";
+            $userSQL = "SELECT anv.namnID, anv.efternamnID, fn.namn AS fornamn, en.namn AS efternamn 
+            FROM användare AS anv 
+            JOIN namn AS fn ON anv.namnID = fn.namnID 
+            JOIN namn AS en ON anv.efternamnID = en.namnID 
+            WHERE anv.användarID = :userID";
 
             $stmt = $pdo->prepare($userSQL);
             $stmt->bindParam(':userID', $userID);
@@ -149,7 +153,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
             return $name;
         }
 
-        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.name, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.nameID");
+        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.namnID");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

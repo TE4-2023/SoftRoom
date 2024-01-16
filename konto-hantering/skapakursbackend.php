@@ -39,9 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Assuming $userID, $picture, and $courseID have correct values here
+    // Assuming $picture, and $courseID have correct values here
 
-    $queryInsertCourse = $pdo->prepare("INSERT INTO kurs (användarID, picture, namnID) VALUES (:userID, :picture, :courseID)");
+    $queryInsertCourse = $pdo->prepare("INSERT INTO kurs (picture, namnID) VALUES (:picture, :courseID)");
+
+
     
     // Binding parameters for the insert query
     $queryInsertCourse->bindParam(':userID', $userID);
@@ -50,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Execute the query
     if ($queryInsertCourse->execute()) {
+        $queryEnrollTeacher = $pdo->prepare("INSERT INTO inskrivningkurs (användarID, kursID) VALUES  (:userID, courseID)")
+
+
         echo "Course added successfully";
         exit();
     } else {
