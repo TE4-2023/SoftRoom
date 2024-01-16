@@ -116,6 +116,7 @@ footer {
 .heading{
             padding-left: 60px;  
             color: white;
+            display: inline-block;
         }
 
 header.scroll {
@@ -181,4 +182,10 @@ header.scroll {
 
 .footer-div {
     font-size: 12px;
+}
+
+.log-btn {
+    text-decoration: none;
+    color: white;
+    padding: 12px 18px;
 }
