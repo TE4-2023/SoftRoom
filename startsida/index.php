@@ -148,7 +148,13 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
             $stmt->bindParam(':userID', $userID);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $name = $result['fornamn'] . " " . $result['efternamn'];
+            $name = '';
+            if ($result['förnamn'] != false && !is_null($result['förnamn'])) {
+                $name = $result['förnamn'] . " ";
+            }
+            if ($result['efternamn'] != false && !is_null($result['efternamn'])) {
+                $name = $name . $result['efternamn'];
+            }
 
             return $name;
         }
