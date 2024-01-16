@@ -1,6 +1,7 @@
 <?php
 require '../connect.php';
 
+// Why isnt this split up in functions -apfrog
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['name'];
     $password = $_POST['password'];
