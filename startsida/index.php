@@ -159,14 +159,14 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
             return $name;
         }
 
-        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.namnID");
+        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.namnID");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($result) > 0) {
             foreach ($result as $row) {
-                $userID = $row['användarID'];
-                $name = getName($userID, $pdo);
+                // $userID = $row['användarID'];
+                // $name = getName($userID, $pdo);
 
                 echo '<div class="kurs">';
                 echo'<div class="kurs_banner">';
