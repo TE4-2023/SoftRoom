@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                             <?php echo $uppgift['titel']; ?>
                             <br>
                             <span class="due-text">Inlämning:
-                                <?php echo $uppgift['InlämningsDatum']; ?>
+                                <?php echo $uppgift['inlämningsDatum']; ?>
                             </span>
                         </button>
                     </a>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                 <label for="">Beskrivningstext</label>
                 <input type="text" name="beskrivningText" value="<?php echo $uppgift['beskrivningText']; ?>">
                 <label for="">Inlämningsdatum</label>
-                <input type="date" name="InlämningsDatum" value="<?php echo $uppgift['InlämningsDatum'] ?>">
+                <input type="date" name="InlämningsDatum" value="<?php echo $uppgift['inlämningsDatum'] ?>">
                 <input type="submit" class="publish-button" name="update" value="Uppdatera uppgift">
             </form>
             </div>
