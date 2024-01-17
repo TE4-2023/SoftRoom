@@ -1,7 +1,7 @@
 <!-- Ihopsnickrat av Emil Gothilander -->
 <?php
 session_start();
-require "../_includes/connect.php";
+require "../../_includes/connect.php";
 
 // Hämta uppgiften från databasen
 $sql = "SELECT * FROM uppgifter WHERE uppgiftID = :AssignmentID";
@@ -13,7 +13,7 @@ $stmt->execute();
 $assignment = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Hämta uppgiftens namn
-$sql = "SELECT * FROM namn WHERE ID = :NameID";
+$sql = "SELECT * FROM namn WHERE namnID = :NameID";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(":NameID", $assignment['namnID']);
 $stmt->execute();
@@ -22,7 +22,7 @@ $assignmentName = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Räkna tid till deadline
 $date = date_create(date('Y-m-d'));
-$deadline = date_create($assignment['InlämningsDatum']);
+$deadline = date_create($assignment['inlämningsDatum']);
 $difference = date_diff($date, $deadline);
 $interval = ltrim($difference->format('%R%a dagar'), '+');
 
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["regret-assignment"])) 
                     <?php echo $assignment['titel']; ?>
                 </h2>
                 <h2 class="assignment-date">Senast inlämning :
-                    <?php echo $assignment['InlämningsDatum']; ?>
+                    <?php echo $assignment['inlämningsDatum']; ?>
                 </h2>
             </div>
             <div class="row-2">
