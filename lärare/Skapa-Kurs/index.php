@@ -110,7 +110,7 @@
     <!-- Modal and Overlay -->
     <div class="overlay" id="overlay" onclick="closeModal()"></div>
     <div class="modal" id="modal">
-        <form action="test.php" method="POST" enctype="multipart/form-data" id="kurs-form">
+        <form action="skapakursbackend.php" method="POST" enctype="multipart/form-data" id="kurs-form">
             <div class="input-container">
                 <label for="namn">Namn på kursen</label>
                 <input type="text" id="namn" name="namn" required>

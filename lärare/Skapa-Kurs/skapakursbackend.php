@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $queryKrav->bindParam(':courseID', $courseID, PDO::PARAM_STR);
         if($queryKrav->execute()){
             echo "krav added to course";
+            header("location: index.php");
         }
     }
-
 ?>
