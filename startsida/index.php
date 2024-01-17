@@ -171,7 +171,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
                 echo '<div class="kurs">';
                 echo'<div class="kurs_banner">';
                 echo '<h3>' . $row['namn'] . '</h3>';
-                echo "<p>" . $name . "</p>";
+                echo "<p>" . "name placaneholder". "</p>";
                 echo "</div>";
                 echo "</div>";
             }
