@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            overflow-y: auto;
         }
 
         form {
@@ -18,6 +19,17 @@
         .input-container {
             margin-bottom: 15px;
         }
+        .input-container textarea{
+            max-width: 350px;
+            height: auto;
+        }
+        .antal{
+            left:10;
+            width: 20%;
+            cursor: default;
+            padding-bottom: 15px;
+
+        }
 
         label {
             display: block;
@@ -25,7 +37,11 @@
             margin-left: 5px;
             font-family: Arial, Helvetica, sans-serif;
         }
-
+        .krav{
+            align-items: center;
+            display: block;
+            padding-bottom: 15px;
+        }
         input {
             width: 100%;
             padding: 12px;
@@ -33,6 +49,11 @@
             border: solid;
             border-width: thin;
             
+        }
+        textarea{
+            max-width: 100%;
+            min-width: 350px;
+            max-height: 350px;
         }
 
         button {
@@ -63,6 +84,7 @@
             position: fixed;
             top: 50%;
             left: 50%;
+            max-width: 500px;
             transform: translate(-50%, -50%);
             background-color: #fff;
             padding: 20px;
@@ -88,7 +110,7 @@
     <!-- Modal and Overlay -->
     <div class="overlay" id="overlay" onclick="closeModal()"></div>
     <div class="modal" id="modal">
-        <form action="skapakursbackend.php" method="POST" enctype="multipart/form-data">
+        <form action="skapakursbackend.php" method="POST" enctype="multipart/form-data" id="kurs-form">
             <div class="input-container">
                 <label for="namn">Namn på kursen</label>
                 <input type="text" id="namn" name="namn" required>
@@ -101,11 +123,48 @@
                 <label for="picture">Bild</label>
                 <input type="text" id="picture" name="picture" required>
             </div>
+            <div class="antal">
+                <label for="">Antal krav</label>
+                <input type="number" id="kunskapskrav-antal" name="antal" min="0" max="7" oninput="checkAntal(this)" required>
+            </div>
+
+            <div id="krav" class="krav">
+
+            </div>
+
             <button type="submit">Lägg till kurs</button>
         </form>
     </div>
 
     <script>
+        function checkAntal(antal){
+            console.log(antal.value);
+            if(antal.value > 7){
+                antal.value = 7;
+            }
+            if (antal.value < 0){
+                antal.value = 0;
+            }
+            form = document.getElementById("kurs-form");
+            kravdiv = document.getElementById("krav");
+            arr=kravdiv;
+
+            for(i = kravdiv.childElementCount; i < antal.value; i++){
+                var input = document.createElement("textarea");
+                input.setAttribute("name", "krav" + i);
+                input.className = "input-container";
+                input.tagName = "krav" + i;
+                kravdiv.appendChild(input);
+            }
+
+            while(antal.value < kravdiv.childElementCount){
+                kravdiv.removeChild(kravdiv.lastChild);
+            }
+
+
+            console.log(form.children);
+        }
+
         function openModal() {
             document.getElementById("modal").style.display = "block";
             document.getElementById("overlay").style.display = "block";

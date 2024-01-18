@@ -52,11 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Execute the query
     if ($queryInsertCourse->execute()) {
-        $queryEnrollTeacher = $pdo->prepare("INSERT INTO inskrivningkurs (användarID, kursID) VALUES  (:userID, courseID)")
-
-
-        echo "Course added successfully";
+        $queryEnrollTeacher = $pdo->prepare("INSERT INTO inskrivningkurs (användarID, kursID) VALUES (:userID, courseID)");
+        $queryEnrollTeacher->bindParam(':userID', $userID);
+        $queryEnrollTeacher->bindParam(':courseID', $courseID);
+        if($queryEnrollTeacher->execute()) {
+            echo "Course and teacher addded successfully";
+        }
+        
+        echo "Course addded successfully";
         exit();
+
     } else {
         print_r($queryInsertCourse->errorInfo()); // Print error info if query fails
         exit();

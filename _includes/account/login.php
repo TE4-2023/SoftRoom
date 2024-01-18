@@ -24,8 +24,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         session_start();
         $_SESSION["uid"] = $row['personNummer'];
+        $_SESSION["användarID"] = $row['användarID'];
         $query = null;
-        header("Location: ../../startsida");
+        if($row['rollID'] == 1){
+            header("Location: ../../startsida");
+        }
+        if($row['rollID'] == 2){
+            header("Location: ../../lärare/startsida");
+        }
+
     }
     else {
         $query = null;

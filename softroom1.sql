@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 16 jan 2024 kl 10:11
+-- Tid vid skapande: 17 jan 2024 kl 09:58
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -83,11 +83,18 @@ INSERT INTO `inskrivningklass` (`klassID`, `användarID`) VALUES
 
 CREATE TABLE `inskrivningkurs` (
   `kursInskrivningID` int(11) NOT NULL,
-  `användarD` int(11) DEFAULT NULL,
+  `användarID` int(11) DEFAULT NULL,
   `kursID` int(11) DEFAULT NULL,
   `betyg` char(1) DEFAULT NULL,
   `matrisVärden` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `inskrivningkurs`
+--
+
+INSERT INTO `inskrivningkurs` (`kursInskrivningID`, `användarID`, `kursID`, `betyg`, `matrisVärden`) VALUES
+(83, 19, 39, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,6 +132,45 @@ CREATE TABLE `klassschema` (
 -- --------------------------------------------------------
 
 --
+-- Tabellstruktur `kravinskrivningar`
+--
+
+CREATE TABLE `kravinskrivningar` (
+  `kravinskrivningID` int(11) NOT NULL,
+  `kravID` int(11) NOT NULL,
+  `kursID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `kravinskrivningar`
+--
+
+INSERT INTO `kravinskrivningar` (`kravinskrivningID`, `kravID`, `kursID`) VALUES
+(4, 7, 39),
+(5, 7, 39),
+(6, 7, 39);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `kunskapskrav`
+--
+
+CREATE TABLE `kunskapskrav` (
+  `kunskapskravID` int(11) NOT NULL,
+  `krav` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `kunskapskrav`
+--
+
+INSERT INTO `kunskapskrav` (`kunskapskravID`, `krav`) VALUES
+(7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+
+-- --------------------------------------------------------
+
+--
 -- Tabellstruktur `kurs`
 --
 
@@ -140,15 +186,7 @@ CREATE TABLE `kurs` (
 --
 
 INSERT INTO `kurs` (`kursID`, `namnID`, `aktiv`, `picture`) VALUES
-(1, 6, b'1', ''),
-(2, 7, b'1', ''),
-(3, 8, b'1', ''),
-(4, 9, b'1', ''),
-(5, 10, b'1', ''),
-(6, 11, b'1', ''),
-(7, 12, b'1', 'dwadasdawd'),
-(8, 12, NULL, 'dwadasdawd'),
-(9, 13, NULL, 'aa');
+(39, 20, b'1', 'bild1');
 
 -- --------------------------------------------------------
 
@@ -238,7 +276,8 @@ INSERT INTO `namn` (`namnID`, `namn`) VALUES
 (14, 'Erwin'),
 (15, 'Hörnell'),
 (16, 'the'),
-(17, 'goat');
+(17, 'goat'),
+(20, 'test');
 
 -- --------------------------------------------------------
 
@@ -331,7 +370,7 @@ ALTER TABLE `inskrivningklass`
 ALTER TABLE `inskrivningkurs`
   ADD PRIMARY KEY (`kursInskrivningID`),
   ADD KEY `fk_KursID_inskrivningkurs` (`kursID`),
-  ADD KEY `fk_ElevID_inskrivningkurs` (`användarD`) USING BTREE;
+  ADD KEY `fk_ElevID_inskrivningkurs` (`användarID`) USING BTREE;
 
 --
 -- Index för tabell `klass`
@@ -347,6 +386,18 @@ ALTER TABLE `klass`
 ALTER TABLE `klassschema`
   ADD PRIMARY KEY (`eventID`),
   ADD KEY `fk_lektionID_Schema` (`lektionID`);
+
+--
+-- Index för tabell `kravinskrivningar`
+--
+ALTER TABLE `kravinskrivningar`
+  ADD PRIMARY KEY (`kravinskrivningID`);
+
+--
+-- Index för tabell `kunskapskrav`
+--
+ALTER TABLE `kunskapskrav`
+  ADD PRIMARY KEY (`kunskapskravID`);
 
 --
 -- Index för tabell `kurs`
@@ -416,7 +467,7 @@ ALTER TABLE `inlämningar`
 -- AUTO_INCREMENT för tabell `inskrivningkurs`
 --
 ALTER TABLE `inskrivningkurs`
-  MODIFY `kursInskrivningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `kursInskrivningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT för tabell `klass`
@@ -431,10 +482,22 @@ ALTER TABLE `klassschema`
   MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT för tabell `kravinskrivningar`
+--
+ALTER TABLE `kravinskrivningar`
+  MODIFY `kravinskrivningID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT för tabell `kunskapskrav`
+--
+ALTER TABLE `kunskapskrav`
+  MODIFY `kunskapskravID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT för tabell `kurs`
 --
 ALTER TABLE `kurs`
-  MODIFY `kursID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `kursID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT för tabell `ledighetsansökningar`
@@ -452,7 +515,7 @@ ALTER TABLE `lektion`
 -- AUTO_INCREMENT för tabell `namn`
 --
 ALTER TABLE `namn`
-  MODIFY `namnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `namnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT för tabell `roll`

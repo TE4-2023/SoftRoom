@@ -159,7 +159,46 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
             return $name;
         }
 
-        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.namnID");
+        function getAllTeachers($course)
+        {
+            $pdo = $GLOBALS['pdo'];
+
+
+
+            $TeacherQ = $pdo->prepare('
+            SELECT *, namn.namn AS firstname , A.namn AS lastname 
+            FROM `användare` 
+            INNER JOIN namn ON användare.namnID = namn.namnID
+            INNER JOIN namn AS A ON användare.efternamnID = A.namnID 
+            RIGHT JOIN inskrivningkurs ON inskrivningkurs.användarID = användare.användarID
+            WHERE användare.rollID = 2 AND inskrivningkurs.kursID = :courseID
+            ');
+            $TeacherQ->bindParam(':courseID', $course, PDO::PARAM_STR);
+        
+            $TeacherQ->execute();
+
+            $nbrOfTeachers = 0;
+            $allTeachers = "";
+                    while ($teachers = $TeacherQ->fetch(PDO::FETCH_ASSOC)) {
+                        $nbrOfTeachers++;
+                        if($nbrOfTeachers > 3)
+                        {
+                            $allTeachers .= "...";
+                            break;
+                        }
+                        if($nbrOfTeachers>1)
+                        {
+                            $allTeachers .= ", ";
+                        }
+                        $allTeachers .= $teachers['firstname'] . " " . $teachers['lastname'];
+                    }
+                    return $allTeachers;
+        }
+
+
+        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.aktiv 
+        FROM kurs 
+        INNER JOIN namn ON kurs.namnID = namn.namnID");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -171,7 +210,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
                 echo '<div class="kurs">';
                 echo'<div class="kurs_banner">';
                 echo '<h3>' . $row['namn'] . '</h3>';
-                echo "<p>" . $name . "</p>";
+                echo "<p>" . getAllTeachers($row['kursID']) . "</p>";
                 echo "</div>";
                 echo "</div>";
             }
@@ -198,7 +237,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
         sideMenu.style.left = (sideMenu.style.left === "0px") ? "-300px" : "0";
     }
 </script>
-<script src="script.js"></script>
+<script src="../script.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
