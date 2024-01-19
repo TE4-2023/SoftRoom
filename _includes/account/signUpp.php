@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmtCheckEmail->rowCount() > 0) {
         echo "Email is already in use. Please choose a different email.";
-        header("Location: ../../skapa-konto/signUpp.html");
+        header("Location: ../../skapa-konto");
         exit();
     }
 /////////////////////////////////////////////////////////////////////////////
