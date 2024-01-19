@@ -27,4 +27,22 @@ function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, options);
 }
+let start = document.getElementById("start");
+let datum = document.getElementById("datum");
+datum.min = new Date().toISOString().split("T")[0];
+let slut = document.getElementById("slut");
+
+start.oninput = function(){
+    //slut.min = start.value;
+    let test = new Date(datum.value + " " + start.value);
+    test.setTime(test.getTime() + (1*60*60*1000));
+    timeString = test.toLocaleTimeString().slice(0, 5);
+    console.log(timeString);
+    slut.min = start;
+    slut.value = timeString;
+
+}
+
+
+
 
