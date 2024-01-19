@@ -1,37 +1,47 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
+    
     const container = document.querySelector('.container-grid');
     const ref = document.querySelector('.container-main');
 
-    const timetable = {
+    var curr = new Date; // get current date
+    var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
+    var week = [];
+    for(let i = 1; i < 6; i++)
+    {
+        week.push(curr.getDate() - curr.getDay()+ i)
+    }
+    week = week.map(getDatum)
 
-       // @@@TODO Testdata, dra riktig data från databas.
+    function getDatum(item){
+        return new Date(curr.setDate(item)).toLocaleDateString()
+    }
 
-        "Mon": [
-            {"time": "10:00-11:00", "course" : "TE4 | Sal 2"},
-            {"time": "11:00-12:30", "course" : "TE4 | Sal 2"},
-            {"time": "13:00-14:30", "course" : "TE4 | Sal 2"},
-        ],
-        "Tue": [
-            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
-            {"time": "14:00-15:00", "course": "TE4 | Sl 2"},
-            {"time": "15:00-16:00", "course": "TE4 | "}
-        ],
-        "Wed": [
-            {"time": "08:00-10:00", "course": "TE4 | Sal 2"},
-            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
-            {"time": "11:00-12:30", "course": "TE4"},
-        ],
-        "Thu": [
-            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
-            {"time": "14:00-15:00", "course": "TE4 | Sal 2"},
-            {"time": "15:00-16:00", "course": "TE4 | Sal 2"},
-        ],
-        "Fri": [
-            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
-            {"time": "14:00-15:00", "course": "TE4 | Sal 2"}
-        ]
+    getLektioner()
+    function getLektioner(dag){
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Optionally, you can redirect the user or perform other actions here
+
+                updateTable(JSON.parse(xhr.responseText))
+            } else {
+               return 
+            }
+        }
     };
+    xhr.open('POST', "getLektioner.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    var data = 'week=' + encodeURIComponent(week);
+    xhr.send(data);
+    }
+    function updateTable(data){
 
+    
+    const timetable = data
     const colours = [
         // Grön - Tagit närvaro
         "#02b802",
@@ -59,9 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var edges = [];
     var courses = [];
 
-
+    console.log(timetable)
     for (const key in timetable) {
         timetable[key].map((item) => {
+            
             edges.push(item.time.split("-")[0]);
             edges.push(item.time.split("-")[1]);
             courses.push(item.course);
@@ -82,7 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var i = 2;
     for (const key in timetable) {
-        timetable[key].map((item) => {
+            timetable[key].map((item) => {
+            
             let temprow1 = edges.indexOf(item.time.split("-")[0]);
             let temprow2 = edges.indexOf(item.time.split("-")[1]);
             divs.push({"className":"grid-item" ,"data":item.course, "row": temprow1+2, "col": i, "row1":temprow2+2, "col1": i+1, "backgroundColor": coursesToColour[item.course]});
@@ -101,4 +113,5 @@ document.addEventListener("DOMContentLoaded", function() {
     document.documentElement.style.setProperty('--lineWidth', ref.offsetWidth-60 + 'px');
 
     ref.style.gridTemplateRows = `25px repeat(${edges.length},1fr)`;
+}
 });
