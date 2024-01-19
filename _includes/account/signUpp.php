@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($query->execute()) {
         echo "Registration successful! Redirecting to login page...";
-        header("Location: ../../logga-in/index.php");
+        header("Location: ../../logga-in");
         exit();
     } else {
         echo "Error! Registration failed.";
