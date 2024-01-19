@@ -3,41 +3,47 @@ document.addEventListener("DOMContentLoaded", function() {
     const ref = document.querySelector('.container-main');
 
     const timetable = {
+
+       // @@@TODO Testdata, dra riktig data från databas.
+
         "Mon": [
-            {"time": "10:00-11:00", "course" : "TE4"},
-            {"time": "11:00-12:30", "course" : "TE4"},
-            {"time": "13:00-14:30", "course" : "TE4"},
+            {"time": "10:00-11:00", "course" : "TE4 | Sal 2"},
+            {"time": "11:00-12:30", "course" : "TE4 | Sal 2"},
+            {"time": "13:00-14:30", "course" : "TE4 | Sal 2"},
         ],
         "Tue": [
-            {"time": "10:00-11:00", "course": "TE4"},
-            {"time": "14:00-15:00", "course": "TE4"},
-            {"time": "15:00-16:00", "course": "TE4"}
+            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
+            {"time": "14:00-15:00", "course": "TE4 | Sl 2"},
+            {"time": "15:00-16:00", "course": "TE4 | "}
         ],
         "Wed": [
-            {"time": "08:00-10:00", "course": "TE4"},
-            {"time": "10:00-11:00", "course": "TE4"},
+            {"time": "08:00-10:00", "course": "TE4 | Sal 2"},
+            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
             {"time": "11:00-12:30", "course": "TE4"},
         ],
         "Thu": [
-            {"time": "10:00-11:00", "course": "TE4"},
-            {"time": "14:00-15:00", "course": "TE4"},
-            {"time": "15:00-16:00", "course": "TE4"},
+            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
+            {"time": "14:00-15:00", "course": "TE4 | Sal 2"},
+            {"time": "15:00-16:00", "course": "TE4 | Sal 2"},
         ],
         "Fri": [
-            {"time": "10:00-11:00", "course": "TE4"},
-            {"time": "14:00-15:00", "course": "TE4"}
+            {"time": "10:00-11:00", "course": "TE4 | Sal 2"},
+            {"time": "14:00-15:00", "course": "TE4 | Sal 2"}
         ]
     };
 
     const colours = [
-        "#8bbba2",
-        "#b488df",
-        "#f77650",
-        "#f2b699",
-        "#b15a59",
-        "#d0b7e8",
-        "#f5ceb4",
-        "#8b5a59",
+        // Grön - Tagit närvaro
+        "#02b802",
+
+        // Röd - Tagit närvaro (Icke närvarande)
+        "#b80202",
+
+        // Grå - Kommande lektion
+        "#999999",
+
+        // Gul - Påbörjad lektion - inte tagit närvaro / försenad
+        "#d6d300",
     ];
 
     const divs = [

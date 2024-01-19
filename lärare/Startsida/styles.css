@@ -180,6 +180,10 @@ header.scroll {
     box-sizing: border-box;
 }
 
+.nyhet img {
+    max-width: 240px;
+}
+
 .footer-div {
     font-size: 12px;
 }

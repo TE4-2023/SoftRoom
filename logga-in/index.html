@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logga in</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../_styles/signUpp.css">
+    <link rel="stylesheet" href="../_styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Logga In</h2>
+        <form action="../_includes/account/login.php" method="POST">
+            <div class="input-container">
+                <label for="email">Mail / E-Post</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Lösenord</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Logga In</button>
+        </form>
+        <br>
+        <form action="../skapa-konto">
+            <button type="submit" class="sbutton">Skapa Konto</button>
+        </form>
+    </div>
+</body>
+</html>

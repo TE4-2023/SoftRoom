@@ -60,6 +60,23 @@ button {
     cursor: pointer;
 }
 
+.sbutton {
+    background-color: #334355;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #0058b6;
+}
+
+.sbutton:hover {
+    background-color: #283544;
+}
+
 p {
     margin-top: 10px;
 }
@@ -69,3 +86,6 @@ a {
     color: #007BFF;
 }
 
+* {
+    font-family: 'Montserrat', sans-serif;
+}

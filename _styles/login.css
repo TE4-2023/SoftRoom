@@ -55,15 +55,29 @@ input {
 }
 
 button {
-    background-color: #f19813;
+    background-color: #007BFF;
     color: #fff;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+
+.sbutton {
+    background-color: #334355;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 button:hover{
-    background-color: #ffb443;
+    background-color: #0058b6;
+}
+
+.sbutton:hover {
+    background-color: #283544;
 }
 
 p {
@@ -74,6 +88,11 @@ a {
     text-decoration: none;
     color: #007BFF;
 }
-.ChangePasswordContainer{
+
+/* .ChangePasswordContainer{
     
+} */
+
+* {
+    font-family: 'Montserrat', sans-serif;
 }
