@@ -4,28 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Skapa konto</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../_styles/signUpp.css">
 </head>
 
 <body>
     <div class="signUpp-container">
-        <h2>Sign Upp</h2>
+        <h2>Skapa Konto</h2>
         <form action="../_includes/account/signUpp.php" method="POST">
             <div class="input-container">
-                <label for="förnamn">förnamn</label>
+                <label for="förnamn">Förnamn</label>
                 <input type="text" id="name" name="name" required>
             </div>
             <div class="input-container">
-                <label for="efternamn">efternamn</label>
+                <label for="efternamn">Efternamn</label>
                 <input type="text" id="lastname" name="lastname" required>
             </div>
             <div class="input-container">
-                <label for="mail">Mail</label>
+                <label for="mail">Mail / E-Post</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="input-container">
-                <label for="roll">roll</label>
+                <label for="roll">Roll</label>
                 <select id="roleID" name="roleID">
                     <option value="1">elev</option>
                     <option value="2">lärare</option>
@@ -33,15 +39,18 @@
                 </select>
             </div>
             <div class="input-container">
-                <label for="personnummer">personnummer</label>
+                <label for="personnummer">Svenskt Personnummer</label>
                 <input type="text" id="personnummer" pattern="\d{8}-?\d{4}" name="personnummer" placeholder="YYYYMMDD-XXXX" required>
             </div>
             <div class="input-container">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">SignUpp</button>
-
+            <button type="submit">Skapa Konto</button>
+        </form>
+        <br>
+        <form action="../logga-in">
+            <button type="submit" class="sbutton">Logga In</button>
         </form>
     </div>
     </div>
