@@ -6,13 +6,17 @@
 include_once "../_includes/connect.php"; // Connect to Database
 include_once "../_includes/auth.php";
 
-if (isUserLoggedIn($pdo)) {
-    echo "hi";
-} else {
+if (!isUserLoggedIn($pdo)) {
     header("Location: ../logga-in");
 }
-?>
+//if (isStudentRole($pdo)) {}
+if (isTeacherRole($pdo)) {
+    header("Location: ../lärare/startsida");
+}
+//if (isAdminRole($pdo)) {}
 
+?>
+  
 <!-- Webpage -->
 <html lang="en">
 <head>
@@ -138,11 +142,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
         function getName($userID, $pdo)
         {
             // Hämta användarens namn från databasen
-            $userSQL = "SELECT anv.namnID, anv.efternamnID, fn.namn AS fornamn, en.namn AS efternamn 
-            FROM användare AS anv 
-            JOIN namn AS fn ON anv.namnID = fn.namnID 
-            JOIN namn AS en ON anv.efternamnID = en.namnID 
-            WHERE anv.användarID = :userID";
+            $userSQL = "SELECT anv.namnID, anv.efternamnID, fn.namn AS fornamn, en.namn AS efternamn FROM användare AS anv JOIN namn AS fn ON anv.namnID = fn.namnID JOIN namn AS en ON anv.efternamnID = en.namnID WHERE anv.användarID = :userID";
 
             $stmt = $pdo->prepare($userSQL);
             $stmt->bindParam(':userID', $userID);
@@ -159,58 +159,19 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
             return $name;
         }
 
-        function getAllTeachers($course)
-        {
-            $pdo = $GLOBALS['pdo'];
-
-
-
-            $TeacherQ = $pdo->prepare('
-            SELECT *, namn.namn AS firstname , A.namn AS lastname 
-            FROM `användare` 
-            INNER JOIN namn ON användare.namnID = namn.namnID
-            INNER JOIN namn AS A ON användare.efternamnID = A.namnID 
-            RIGHT JOIN inskrivningkurs ON inskrivningkurs.användarID = användare.användarID
-            WHERE användare.rollID = 2 AND inskrivningkurs.kursID = :courseID
-            ');
-            $TeacherQ->bindParam(':courseID', $course, PDO::PARAM_STR);
-        
-            $TeacherQ->execute();
-
-            $nbrOfTeachers = 0;
-            $allTeachers = "";
-                    while ($teachers = $TeacherQ->fetch(PDO::FETCH_ASSOC)) {
-                        $nbrOfTeachers++;
-                        if($nbrOfTeachers > 3)
-                        {
-                            $allTeachers .= "...";
-                            break;
-                        }
-                        if($nbrOfTeachers>1)
-                        {
-                            $allTeachers .= ", ";
-                        }
-                        $allTeachers .= $teachers['firstname'] . " " . $teachers['lastname'];
-                    }
-                    return $allTeachers;
-        }
-
-
-        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.aktiv 
-        FROM kurs 
-        INNER JOIN namn ON kurs.namnID = namn.namnID");
+        $stmt = $pdo->prepare("SELECT kurs.kursID, namn.namn, kurs.användarID, kurs.aktiv FROM kurs INNER JOIN namn ON kurs.namnID = namn.namnID");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($result) > 0) {
             foreach ($result as $row) {
-                // $userID = $row['användarID'];
-                // $name = getName($userID, $pdo);
+                $userID = $row['användarID'];
+                $name = getName($userID, $pdo);
 
                 echo '<div class="kurs">';
                 echo'<div class="kurs_banner">';
                 echo '<h3>' . $row['namn'] . '</h3>';
-                echo "<p>" . getAllTeachers($row['kursID']) . "</p>";
+                echo "<p>" . $name . "</p>";
                 echo "</div>";
                 echo "</div>";
             }
@@ -237,7 +198,7 @@ if (/*isUserLoggedIn()*/true) { //change that later?>
         sideMenu.style.left = (sideMenu.style.left === "0px") ? "-300px" : "0";
     }
 </script>
-<script src="../script.js"></script>
+<script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
