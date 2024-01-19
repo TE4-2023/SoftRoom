@@ -42,6 +42,7 @@ if (isTeacherRole($pdo)) {
 <header>
     <h2 class="heading">Softroom</h2>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <a class="log-btn" href="../../_includes/account/logOut.php">Logga ut</a>
 </header>
 
 <div class="menu" id="sideMenu">
