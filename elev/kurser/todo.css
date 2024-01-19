@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+
+}
+
+#title {
+    position: relative;
+    text-align: center;
+    color: white; /* Set text color to white or any color that contrasts with the image */
+    background: url(cover-phone-nti.jpg) center;
+    height: 250px; /* Set the desired height for the header */
+    margin-bottom: 50px; /* Add margin to create space between the header and the content below */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title h1 {
+    margin: 0;
+    font-size: 60px;
+}
+
+
+#news {
+    text-align: center;
+    font-size: 20px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:3rem;
+    margin-top: 5rem;
+}
+
+.göra{
+    width:25%;
+    align-items: center;
+    background-color: #4f78d1;
+    padding:15px;
+    border-radius: 15px;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow images to wrap to the next line on small screens */
+    justify-content: space-around; /* Adjust the spacing between images */
+    margin: 20px 0; /* Add margin to create space between images and other content */
+}
+
+
+.image-container img {
+    max-width: 100%; /* Set the maximum width for each image to 100% of the container */
+    height: 300px; /* Set a specific height for all images */
+    object-fit: cover; /* Maintain the aspect ratio and cover the specified height */
+    margin-right: 0px; /* Adjust the margin between images */
+}
+
+.image-item p {
+    margin: 1; /* Remove default margin for better alignment */
+}
+
+.schedule-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Header, footer, Navbar  */
+
+header {
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1px; /* Increase the padding for a thicker header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+
+}
+
+footer {
+            background: url('https://wallpapers.com/images/featured/background-mhdoyguhq3skloxt.jpg') center/cover no-repeat;
+            color: black;
+            text-align: center;
+            padding: 15px;
+            bottom: 0;
+            width: 100%;
+
+        }
+
+.menu-toggle {
+            cursor: pointer;
+            font-size: 24px;
+            position: fixed;
+            top: 17px;
+            left: 25px;
+            color: white;
+        }
+
+.menu {
+            display: flex;
+            flex-wrap: wrap;
+            position: fixed;
+            top: 70px;
+            left: -300px; /* Initial position off-screen */
+            width: 300px;
+            height: 100%;
+            background-color: rgba(1, 1, 1, 1); /* Semi-transparent white background */
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+.menu a {
+            display: block;
+            margin: 5px;
+            padding: 20px;
+            text-decoration: none;
+            color: #ffffff; /* Link color */
+            transition: background-color 0.3s ease;
+        }
+
+.menu a:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black background on hover */
+            color: magenta
+        }
+
+.menu-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black background on hover */
+        }
+
+.heading{
+            padding-left: 60px;  
+            color: white;
+        }
+
+header.scroll {
+            background-color: black;
+            backdrop-filter: blur(0px);
+        }
+
+    
+        .menu a, .dropdown-link {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            color: white;
+          }
+          
+       
+          
+          /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+          .dropdown-container {
+            display: none;
+            padding-left: 50px;
+          }
+          
+          /* Optional: Style the caret down icon */
+          .fa-caret-down {
+            float: left;
+            padding-right: 12px;
+          }
+
+          .rotate {
+            transform: rotate(-180deg);
+            transition: transform 0.3s ease; /* Add a smooth transition effect */
+        }
+        
+        .kurser{
+            display: grid;
+            grid-template-columns: auto;
+            justify-content: center;
+            align-items: center;
+            padding-top:6rem;
+            gap:20px;
+        }
+        .kurs{
+            border-radius: 15px;
+            margin: 10px;
+            width: 90vw;
+            height: 25vh;
+            background-color: #eeeeee;
+            display: flex;
+        }
+        .kurs:hover{
+            box-shadow: 3px 3px 3px 3px rgb(151, 151, 151);
+        }
+        .kurs_banner{
+            width: 100%;
+            height: 40%;
+            background-color: #4f78d1;
+            border-radius: 15px 15px 0 0;
+            padding: 0 10px 0 10px;
+        }
+        @media only screen and (min-width: 800px) {
+            .kurser{
+                grid-template-columns: auto auto;
+            }
+            .kurs{
+            width: 40vw;
+            }
+        }
+        @media only screen and (min-width: 1200px) {
+            .kurser{
+                grid-template-columns: auto auto auto ;
+            }
+            .kurs{
+                width: 30vw;
+                }
+        }
+        @media only screen and (min-width: 1600px) {
+            .kurser{
+                grid-template-columns: auto auto auto auto ;
+            }
+            .kurs{
+                width: 20vw;
+                }
+        }
+        @media only screen and (min-width: 2000px) {
+            .kurser{
+                grid-template-columns: auto auto auto auto auto;
+            }
+            .kurs{
+                width: 15vw;
+                }
+        }
